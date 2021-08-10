@@ -7,10 +7,6 @@ const App = () => {
   const anecdotesSorted = [...anecdotes].sort((a, b) => (a.votes > b.votes) ? -1 : 1)
   const dispatch = useDispatch()
 
-  const vote = (id) => {
-    dispatch(addVote(id))
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
@@ -28,7 +24,7 @@ const App = () => {
           </div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => dispatch(addVote((anecdote.id)))}>vote</button>
           </div>
         </div>
       )}
