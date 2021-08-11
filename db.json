@@ -34,6 +34,11 @@
       "content": "New anecdote from frontend",
       "votes": 0,
       "id": "HX_C4SU"
+    },
+    {
+      "content": "New anecdote with Redux Thunk",
+      "votes": 0,
+      "id": "WXTHhDU"
     }
   ]
 }
