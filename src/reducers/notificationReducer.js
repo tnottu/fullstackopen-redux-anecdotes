@@ -1,3 +1,5 @@
+let timeoutID;
+
 const reducer = (state = null, { type, content }) => {
   switch(type) {
     case 'SET_NOTIFICATION':
@@ -21,10 +23,12 @@ export const setNotification = (content, timeout) => {
 
 export const clearNotification = (timeout = 0) => {
   return async (dispatch) => {
-    await new Promise(resolve => setTimeout(resolve, timeout * 1000))
-    dispatch({
-      type: 'CLEAR_NOTIFICATION',
-    })
+    clearTimeout(timeoutID)
+    timeoutID = setTimeout(() => {
+      dispatch({
+        type: 'CLEAR_NOTIFICATION',
+      })
+    }, timeout * 1000)
   }
 }
 
