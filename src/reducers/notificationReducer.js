@@ -2,23 +2,29 @@ const reducer = (state = null, { type, content }) => {
   switch(type) {
     case 'SET_NOTIFICATION':
       return content
-    case 'REMOVE_NOTIFICATION':
+    case 'CLEAR_NOTIFICATION':
       return null
     default:
       return state
   }
 }
 
-export const setNotification = (content) => {
-  return {
-    type: 'SET_NOTIFICATION',
-    content,
+export const setNotification = (content, timeout) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'SET_NOTIFICATION',
+      content,
+    })
+    dispatch(clearNotification(timeout))
   }
 }
 
-export const removeNotification = () => {
-  return {
-    type: 'REMOVE_NOTIFICATION',
+export const clearNotification = (timeout = 0) => {
+  return async (dispatch) => {
+    await new Promise(resolve => setTimeout(resolve, timeout * 1000))
+    dispatch({
+      type: 'CLEAR_NOTIFICATION',
+    })
   }
 }
 
